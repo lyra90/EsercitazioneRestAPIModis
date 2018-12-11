@@ -11,5 +11,8 @@ namespace ModisAPI.WorkerServices
         //issue23 inserire un nuovo studente//
         void CreaStudente(Studente studente);
 
+        //inserire i nuovi valori nel db
+        void ModificaStudente(Studente studenteModificato);
+
     }
 }
