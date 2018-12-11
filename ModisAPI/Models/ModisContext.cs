@@ -42,6 +42,8 @@ namespace ModisAPI.Models
                               "Trusted_Connection=True;ConnectRetryCount=0";
 
             optionsBuilder.UseSqlServer(connection);
+            //unico punto in cui si specifica sql server//
+
 
         }
 
