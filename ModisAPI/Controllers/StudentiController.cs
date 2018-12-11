@@ -35,9 +35,11 @@ namespace ModisAPI.Controllers
         }
 
         // POST: api/Studenti
+        //modifica per riuscire ad aggiungere una nuova risorsa
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post(Studente studente)
         {
+            worker.CreaStudente(studente);
         }
 
         // PUT: api/Studenti/5
