@@ -14,6 +14,16 @@ namespace ModisAPI.WorkerServices
             db = new ModisContext();
         }
 
+        public void CancellaStudente(int id)
+        {
+            var studente = db.Studenti.Find(id);
+            if (studente != null)
+            {
+                db.Entry(studente).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+                db.SaveChanges();
+            }
+        }
+
         public void CreaStudente(Studente studente)
         {
             //per aggiungere e salvare le modifiche
@@ -43,52 +53,62 @@ namespace ModisAPI.WorkerServices
             return db.Studenti.Where(x => x.Id == id).FirstOrDefault();
         }
     }
-    public class WorkerServiceOracleDb : IWorkerServiceStudenti
-    {
-        public void CreaStudente(Studente studente)
-        {
-            throw new NotImplementedException();
-        }
+    //public class WorkerServiceOracleDb : IWorkerServiceStudenti
+    //{
+    //    public void CancellaStudente(int id)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        public void ModificaStudente(Studente studenteModificato)
-        {
-            throw new NotImplementedException();
-        }
+    //    public void CreaStudente(Studente studente)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        public List<Studente> RestituisciListaStudenti()
-        {
-            throw new NotImplementedException();
-        }
+    //    public void ModificaStudente(Studente studenteModificato)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        public Studente RestituisciStudente(int id)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //    public List<Studente> RestituisciListaStudenti()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-    public class WorkerServiceStudenti : IWorkerServiceStudenti
-    {
-        public void CreaStudente(Studente studente)
-        {
-            throw new NotImplementedException();
-        }
+    //    public Studente RestituisciStudente(int id)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 
-        public void ModificaStudente(Studente studenteModificato)
-        {
-            throw new NotImplementedException();
-        }
+    //public class WorkerServiceStudenti : IWorkerServiceStudenti
+    //{
+    //    public void CancellaStudente(int id)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        public List<Studente> RestituisciListaStudenti()
-        {
-            var studente1 = new Studente { Id = 1, Cognome = "Mario", Nome = "Rossi" };
-            var studente2 = new Studente { Id = 2, Cognome = "MastroCesare", Nome = "Francesco" };
-            return new List<Studente> { studente1, studente2 };
-        }
+    //    public void CreaStudente(Studente studente)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        public Studente RestituisciStudente(int id)
-        {
-            return RestituisciListaStudenti().Where(x => x.Id == id).FirstOrDefault();
-        }
+    //    public void ModificaStudente(Studente studenteModificato)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-    }
+    //    public List<Studente> RestituisciListaStudenti()
+    //    {
+    //        var studente1 = new Studente { Id = 1, Cognome = "Mario", Nome = "Rossi" };
+    //        var studente2 = new Studente { Id = 2, Cognome = "MastroCesare", Nome = "Francesco" };
+    //        return new List<Studente> { studente1, studente2 };
+    //    }
+
+    //    public Studente RestituisciStudente(int id)
+    //    {
+    //        return RestituisciListaStudenti().Where(x => x.Id == id).FirstOrDefault();
+    //    }
+
+    //}
 }
