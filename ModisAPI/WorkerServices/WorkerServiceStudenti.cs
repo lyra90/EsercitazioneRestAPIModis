@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace ModisAPI.WorkerServices
 {
@@ -43,9 +45,22 @@ namespace ModisAPI.WorkerServices
 
         }
 
-        public List<Studente> RestituisciListaStudenti()
+        public List<ViewModelStudente> RestituisciListaStudenti()
         {
-            return db.Studenti.ToList();
+            return db.Studenti.Include("Corsi").Select(y =>new ViewModelStudente
+            {
+                Id = y.Id,
+                NomeCompleto = y.Nome + " " + y.Cognome,
+                Corsi = y.StudenteCorsi.Select(z => new Corso
+                {
+                    CorsoId = z.Corso.CorsoId,
+                    DataInizio = z.Corso.DataInizio,
+                    Nome = z.Corso.Nome,
+                    DurataInOre = z.Corso.DurataInOre,
+                    NumeroMassimoPartecipanti = z.Corso.NumeroMassimoPartecipanti,
+                    Livello = z.Corso.Livello
+                }).ToList()
+            }).ToList();
         }
         public Studente RestituisciStudente(int id)
         {
