@@ -22,7 +22,7 @@ namespace ModisAPI.Controllers
 
         // GET: api/Studenti
         [HttpGet]
-        public IEnumerable<ViewModelStudente> Get()
+        public IEnumerable<Studente> Get()
         {
             return worker.RestituisciListaStudenti();
         }
@@ -35,25 +35,21 @@ namespace ModisAPI.Controllers
         }
 
         // POST: api/Studenti
-        //modifica per riuscire ad aggiungere una nuova risorsa
         [HttpPost]
-        public void Post(Studente studente)
+        public void Post([FromBody] string value)
         {
-            worker.CreaStudente(studente);
         }
 
         // PUT: api/Studenti/5
         [HttpPut("{id}")]
-        public void Put(int id, Studente StudenteModificato)
+        public void Put(int id, [FromBody] string value)
         {
-            worker.ModificaStudente(StudenteModificato);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            worker.CancellaStudente(id);
         }
     }
 }
