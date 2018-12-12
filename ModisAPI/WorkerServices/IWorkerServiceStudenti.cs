@@ -14,5 +14,7 @@ namespace ModisAPI.WorkerServices
         //inserire i nuovi valori nel db
         void ModificaStudente(Studente studenteModificato);
 
+        void CancellaStudente(int id);
+
     }
 }
