@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace ModisAPI.Models
 {
-    public class ModisContext: DbContext
+    public class ModisContext : DbContext
     {
-      
+        public ModisContext (DbContextOptions<ModisContext> options) : base (options)
+        {
+        }
+
 
     public DbSet<Studente> Studenti { get; set; }
 
@@ -34,18 +37,19 @@ namespace ModisAPI.Models
                 .HasForeignKey(bc => bc.CorsoId);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
-        {
+        //{
 
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=ModisDB2;" +
-                              "Trusted_Connection=True;ConnectRetryCount=0";
+        //    var connection = @"Server=(localdb)\mssqllocaldb;Database=ModisDB2;" +
+        //                      "Trusted_Connection=True;ConnectRetryCount=0";
 
-            optionsBuilder.UseSqlServer(connection);
-            //unico punto in cui si specifica sql server//
+        //    optionsBuilder.UseSqlServer(connection);
+        //    //unico punto in cui si specifica sql server//
 
+        
 
-        }
+        //}
 
     }
 }

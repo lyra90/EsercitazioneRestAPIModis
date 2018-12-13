@@ -11,9 +11,11 @@ namespace ModisAPI.WorkerServices
     public class WorkerServiceSQLServerDB : IWorkerServiceStudenti
     {
         private ModisContext db;
-        public WorkerServiceSQLServerDB()
+        public WorkerServiceSQLServerDB(ModisContext _db)
         {
-            db = new ModisContext();
+            db = _db;
+            //ora non serve più, perchè l'ho iniettato nel costruttore qui sopra
+            //db = new ModisContext();
         }
 
         public void CancellaStudente(int id)
